@@ -53,6 +53,9 @@ document.querySelectorAll(".product-card").forEach((card) => {
 	});
 });
 
+
+
+
 const enquiryForm = document.getElementById("enquiry-form");
 
 if (enquiryForm) {
