@@ -1,29 +1,57 @@
 .certificates {
-  padding: 1.2rem 0 2.4rem;
+  padding: 1.8rem 0 2.8rem;
+  background:
+    linear-gradient(180deg, rgba(236, 240, 246, 0.65), rgba(248, 250, 253, 0.9)),
+    repeating-linear-gradient(135deg, rgba(98, 112, 132, 0.04) 0 8px, rgba(255, 255, 255, 0.04) 8px 16px);
 }
 
 .certificate-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.certificate-grid a {
-  display: grid;
-  place-items: center;
-  min-height: 92px;
-  background: linear-gradient(160deg, #eff3fa, #ffffff);
+.certificate-card {
+  background: linear-gradient(165deg, #eef2f8 0%, #ffffff 55%, #edf1f7 100%);
   border-radius: 12px;
-  border: 1px solid #d2dceb;
-  color: #2b3f62;
-  font-weight: 700;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #c4cfdf;
+  max-width: 430px;
+  width: 100%;
+  margin-inline: auto;
+  padding: 0.65rem;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 8px 22px rgba(28, 43, 67, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
-.certificate-grid a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(41, 67, 107, 0.18);
+.certificate-card:hover {
+  transform: translateY(-3px);
+  border-color: #9caec8;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.94),
+    0 14px 30px rgba(30, 47, 74, 0.2);
+}
+
+.certificate-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #d2dae6;
+}
+
+.certificate-detail {
+  margin: 0.7rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid #d7e0ed;
+  color: #2a3b56;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-weight: 600;
 }
 
 @media (max-width: 720px) {

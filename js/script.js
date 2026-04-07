@@ -16,7 +16,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 	});
 });
 
-const revealItems = document.querySelectorAll(".hero-copy, .hero-visual, .product-card, .about-grid > div, .certificate-grid a, .footer-meta-card");
+const revealItems = document.querySelectorAll(".hero-copy, .hero-visual, .product-card, .about-grid > div, .certificate-card, .footer-meta-card");
 
 if ("IntersectionObserver" in window && revealItems.length) {
 	const observer = new IntersectionObserver(
