@@ -121,3 +121,60 @@ if (enquiryForm) {
 		}
 	});
 }
+
+
+	// js for google sheet 
+
+	const form = document.getElementById("enquiry-form");
+	const btn = document.querySelector(".btn-submit");
+
+	form.addEventListener("submit", async (e) => {
+	e.preventDefault();
+
+	// Check validation
+	if (!form.checkValidity()) {
+		form.reportValidity();
+		return;
+	}
+
+	const formData = {
+		firmName: document.getElementById("firm-name").value,
+		contactName: document.getElementById("contact-name").value,
+		email: document.getElementById("email").value,
+		phone: document.getElementById("phone").value,
+		city: document.getElementById("city").value,
+		requirements: document.getElementById("requirements").value,
+	};
+
+	try {
+		// 🔄 Loading state
+		btn.innerText = "Submitting...";
+		btn.disabled = true;
+
+		await fetch("https://script.google.com/macros/s/AKfycbwudSy-kDZRUUmo1ZRxFVsOdk6Lq0wibyVy9LFw9giVqD4ADKCj3S_wA83L4NLbuNhIqQ/exec", {
+		method: "POST",
+		body: JSON.stringify(formData),
+		mode: "no-cors",
+		});
+
+		// ✅ Success UI
+		btn.innerText = "Submitted ✅";
+		form.reset();
+
+		setTimeout(() => {
+		btn.innerText = "Get Quote";
+		btn.disabled = false;
+		}, 2000);
+
+	} catch (error) {
+		console.error(error);
+
+		// ❌ Error UI
+		btn.innerText = "Try Again ❌";
+
+		setTimeout(() => {
+		btn.innerText = "Get Quote";
+		btn.disabled = false;
+		}, 2000);
+	}
+	});
