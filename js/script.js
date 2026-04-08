@@ -151,7 +151,7 @@ if (enquiryForm) {
 		btn.innerText = "Submitting...";
 		btn.disabled = true;
 
-		await fetch("https://script.google.com/macros/s/AKfycbwudSy-kDZRUUmo1ZRxFVsOdk6Lq0wibyVy9LFw9giVqD4ADKCj3S_wA83L4NLbuNhIqQ/exec", {
+		await fetch("https://script.google.com/macros/s/AKfycbyx0AKML_8y6mR_rjCGFRwo0JrC68jRWPWrjVPd4UtdpwHK9ghCe-6Tm0gJzMZtQohCSg/exec", {
 		method: "POST",
 		body: JSON.stringify(formData),
 		mode: "no-cors",
