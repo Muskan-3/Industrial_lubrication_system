@@ -87,7 +87,9 @@ if (enquiryForm) {
 		});
 	}
 
-	enquiryForm.addEventListener("submit", (event) => {
+	enquiryForm.addEventListener("submit", async (event) => {
+		event.preventDefault();
+
 		const phoneValue = phoneInput ? phoneInput.value.trim() : "";
 		const requirementsValue = requirementsInput ? requirementsInput.value.trim() : "";
 		const nameValue = contactNameInput ? contactNameInput.value.trim() : "";
@@ -117,7 +119,60 @@ if (enquiryForm) {
 		if (requirementsInput && requirementsValue.length < 10) {
 			requirementsInput.setCustomValidity("Requirements must be at least 10 characters.");
 			requirementsInput.reportValidity();
-			event.preventDefault();
+			return;
+		}
+
+		if (!enquiryForm.checkValidity()) {
+			enquiryForm.reportValidity();
+			return;
+		}
+
+		const btn = enquiryForm.querySelector(".btn-submit");
+		const formData = {
+			firmName: document.getElementById("firm-name").value.trim(),
+			contactName: document.getElementById("contact-name").value.trim(),
+			email: document.getElementById("email").value.trim(),
+			phone: phoneValue,
+			city: cityValue,
+			requirements: requirementsValue,
+		};
+
+		try {
+			if (btn) {
+				btn.innerText = "Submitting...";
+				btn.disabled = true;
+			}
+
+			await fetch("https://script.google.com/macros/s/AKfycbzl6O-QZKlxV0Pgwe4aI4wtZMhiofLVjypA0WIjBG-LspTzrelbmOg5RYK13byWF9b2UQ/exec", {
+				method: "POST",
+				body: JSON.stringify(formData),
+				mode: "no-cors",
+			});
+
+			if (btn) {
+				btn.innerText = "Submitted ✅";
+			}
+			enquiryForm.reset();
+
+			setTimeout(() => {
+				if (btn) {
+					btn.innerText = "Get Quote";
+					btn.disabled = false;
+				}
+			}, 2000);
+		} catch (error) {
+			console.error(error);
+
+			if (btn) {
+				btn.innerText = "Try Again ❌";
+			}
+
+			setTimeout(() => {
+				if (btn) {
+					btn.innerText = "Get Quote";
+					btn.disabled = false;
+				}
+			}, 2000);
 		}
 	});
 }
