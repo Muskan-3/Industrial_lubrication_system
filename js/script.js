@@ -116,12 +116,6 @@ if (enquiryForm) {
 			return;
 		}
 
-		if (requirementsInput && requirementsValue.length < 10) {
-			requirementsInput.setCustomValidity("Requirements must be at least 10 characters.");
-			requirementsInput.reportValidity();
-			return;
-		}
-
 		if (!enquiryForm.checkValidity()) {
 			enquiryForm.reportValidity();
 			return;
